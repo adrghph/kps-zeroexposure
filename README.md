@@ -89,7 +89,7 @@ You may use insecure_skip_verify: true if you're in a trusted cluster environmen
 
 ## Alerting
 
-This chart does **not** evaluate alerts itself — Prometheus is deployed in **agent mode** only:
+This chart does **not** evaluate alerts itself, Prometheus is deployed in **agent mode** only:
 - No local time-series storage
 - No alert evaluation engine
 - No web UI
