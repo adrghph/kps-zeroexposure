@@ -26,12 +26,13 @@ No service is exposed. No port is opened. No strange workaround.
 
 Before deploying kps-zeroexposure, ensure you have:
 
-- kube-prometheus-stack already installed and configured without servicemonitor activate for :
+- kube-prometheus-stack is already installed with the following components disabled in its values.yaml:
   - `kubeEtcd.enabled = false`
   - `kubeScheduler.enabled = false`
   - `kubeControllerManager.enabled = false`
   - `kubeProxy.enabled = false`
-- A Prometheus instance ready to receive remote_write metrics
+- Remote write is enabled in kube-prometheus-stack values.yaml:
+  - `enableRemoteWriteReceiver = true`
 - Access to control-plane node certificates via **/etc/kubernetes/pki**
 - Helm 3.x installed
 - A running Kubernetes cluster (v1.20+)
