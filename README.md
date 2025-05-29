@@ -60,8 +60,9 @@ helm install kps . --namespace <namespace>
 
 ## Configuration
 
-| remoteWriteUrl   | URL to send scraped metrics to (/api/v1/write on central Prometheus) | ""              |
+| Parameter        | Description                                                          | Default Value   |
 |------------------|----------------------------------------------------------------------|-----------------|
+| remoteWriteUrl   | URL to send scraped metrics to (/api/v1/write on central Prometheus) | see values.yaml |
 | nodeSelector     | Ensures agent runs only on control-plane nodes                       | see values.yaml |
 | tolerations      | Allows scheduling on tainted control-plane nodes                     | see values.yaml |
 | image.repository | Prometheus image                                                     | prom/prometheus |
