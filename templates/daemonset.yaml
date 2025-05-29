@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kps-agent
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: kps-agent
+  template:
+    metadata:
+      labels:
+        app: kps-agent
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
+      tolerations: {{ toYaml .Values.tolerations | nindent 8 }}
+      containers:
+        - name: prometheus
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+            - "--storage.tsdb.retention.time=1h"
+            - "--log.level=debug"
+            - "--web.listen-address=127.0.0.1:9091"
+            - "--enable-feature=expand-external-labels"
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          volumeMounts:
+            - name: config
+              mountPath: /etc/prometheus/
+            - name: data
+              mountPath: /prometheus/
+            - name: kube-certs
+              mountPath: /etc/pki
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: kps-config
+        - name: data
+          emptyDir: {}
+        - name: kube-certs
+          hostPath:
+            path: /etc/kubernetes/pki
+            type: DirectoryOrCreate

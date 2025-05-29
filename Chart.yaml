@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kps-zeroexposure
+description: |
+  Lightweight Prometheus agent DaemonSet to scrape Kubernetes control plane metrics locally without exposing insecure ports.
+type: application
+version: 0.1.0
+appVersion: "v2.52.0"
