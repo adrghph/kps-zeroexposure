@@ -5,7 +5,7 @@
 
 This Helm chart provides a secure, zero-exposure method for collecting Kubernetes control plane metrics using Prometheus Agent.
 
-It is designed to complement an existing deployment of kube-prometheus-stack by scraping critical components : etcd, kube-scheduler, kube-controller-manager, and kube-proxy locally on control-plane nodes and pushing metrics via remote_write.
+It is designed to complement an existing deployment of **kube-prometheus-stack** by scraping critical components : **etcd**, **kube-scheduler**, **kube-controller-manager** and **kube-proxy** locally on control-plane nodes and pushing metrics via remote_write.
 
 No service is exposed. No port is opened. No strange workaround.
 
@@ -26,22 +26,22 @@ No service is exposed. No port is opened. No strange workaround.
 
 Before deploying kps-zeroexposure, ensure you have:
 
-- A running Kubernetes cluster (v1.20+)
 - kube-prometheus-stack already installed and configured without servicemonitor activate for :
   - `kubeEtcd.enabled = false`
   - `kubeScheduler.enabled = false`
   - `kubeControllerManager.enabled = false`
   - `kubeProxy.enabled = false`
-- Helm 3.x installed
 - A Prometheus instance ready to receive remote_write metrics
-- Access to control-plane node certificates via /etc/kubernetes/pki
+- Access to control-plane node certificates via **/etc/kubernetes/pki**
+- Helm 3.x installed
+- A running Kubernetes cluster (v1.20+)
 
 ## Installation
 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-org>/kps-zeroexposure.git
+git clone https://github.com/adrghph/kps-zeroexposure.git
 cd kps-zeroexposure
 ```
 
