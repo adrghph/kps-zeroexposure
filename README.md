@@ -98,7 +98,7 @@ However, **all scraped metrics are pushed via `remote_write`** to your central P
 
 - Alerts **can and should** be defined
 - You can use the `source` and `job` labels (`etcd-local`, `scheduler-local`, etc.) for targeting
-  - Request PromQL = **up{source="kps-agent"}**
+  - Request PromQL = **up{source="kps-zeroexposure"}**
   - Request PromQL = **up{job="etcd-local"}**
 - Dashboards and Alertmanager integrations are fully supported
 
