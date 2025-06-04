@@ -67,7 +67,7 @@ helm install kps . --namespace <namespace>
 | nodeSelector     | Ensures agent runs only on control-plane nodes                       | see values.yaml |
 | tolerations      | Allows scheduling on tainted control-plane nodes                     | see values.yaml |
 | image.repository | Prometheus image                                                     | prom/prometheus |
-| image.tag        | Image version                                                        | v2.52.0         |
+| image.tag        | Image version                                                        | v3.4.1          |
 | image.pullPolicy | Pull policy for the image                                            | IfNotPresent    |
 
 ## TLS Configuration
